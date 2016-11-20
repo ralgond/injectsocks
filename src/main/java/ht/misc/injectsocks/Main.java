@@ -13,21 +13,8 @@ public class Main {
 		File jarFile = new File(args);
 		URL url = jarFile.toURI().toURL();
 		URLClassLoader agentJarLoader = new URLClassLoader(new URL[]{url}, ClassLoader.getSystemClassLoader().getParent());
+		
 		agentJarLoader.loadClass("ht.misc.injectsocks.ConfigReader");
-		
-		/*
-		Object obj = agentJarLoader.loadClass("ht.misc.injectsocks.InjectSocksTransformer").newInstance();
-		Class<?> paramTypes[] = new Class[1];
-		paramTypes[0] = Void.TYPE;
-		Object paramValues[] = new Object[0];
-		Method method = obj.getClass().getMethod("newTest", null);
-		Object ret = method.invoke(obj, paramValues);
-		
-		System.out.println(ClassLoader.getSystemClassLoader());
-		System.out.println(agentJarLoader);
-		System.out.println(obj.getClass().getClassLoader());
-		System.out.println(ret.getClass().getClassLoader());
-		*/
 		ProxyManager.getInstance().updateProxy(ConfigReader.getSocksHost(), ConfigReader.getSocksPort());
 		
 		Object obj = agentJarLoader.loadClass("ht.misc.injectsocks.InjectSockstTransformerImpl").newInstance();
