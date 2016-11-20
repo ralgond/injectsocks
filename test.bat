@@ -1,1 +1,1 @@
-java -Dinjectsocks.configfile=inject.config -javaagent:target/injectsocks-1.0.0.jar -jar java-0.0.1-SNAPSHOT.jar 14.215.177.38 80
+java -Dinjectsocks.configfile=inject.config -javaagent:target/injectsocks-1.0.0.jar=target/injectsocks-1.0.0.jar -jar java-0.0.1-SNAPSHOT.jar 14.215.177.38 80

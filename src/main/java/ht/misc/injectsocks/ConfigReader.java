@@ -11,7 +11,6 @@ public class ConfigReader {
 	private static int socksPort = 0;
 	static {
 		String fileName = System.getProperty("injectsocks.configfile");
-		
 		if (fileName != null && fileName.length() > 0) {
 			System.out.println("INFO: injectsocks.configfile="+fileName);
 			BufferedReader reader = null;
