@@ -5,7 +5,6 @@ import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
 
-import  ht.misc.injectsocks.InjectSockstTransformerImpl;
 public class InjectSocksTransformer implements ClassFileTransformer {
 	Object impl;
 	

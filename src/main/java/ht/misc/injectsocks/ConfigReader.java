@@ -26,6 +26,9 @@ public class ConfigReader {
 						String key = arr[0].trim();
 						String value = arr[1].trim();
 						
+						if (value.length() == 0)
+							continue;
+						
 						if (key.equals("prefixList") && value.length() > 0) {
 							for (String prefix : value.split(";")) {
 								prefix = prefix.trim();
