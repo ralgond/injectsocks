@@ -5,4 +5,4 @@ execute "mvn assembly:assembly" to build
 
 example: test.bat
 
-To solve the asm lib conflicting problem, our classes is loaded by a classloader whose parent is ext-classloader while the the other asm lib is loaded by app-classloader.
+To solve the asm lib conflicting problem, our classes is loaded by a classloader whose parent is ext-classloader while the other asm libs is loaded by app-classloader.
