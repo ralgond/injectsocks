@@ -9,7 +9,7 @@ public class ProxyManager {
 	
 	Proxy proxy;
 	private ProxyManager() {
-		SocketAddress addr = new InetSocketAddress("192.168.100.1", 80);
+		SocketAddress addr = new InetSocketAddress(ConfigReader.getSocksHost(), ConfigReader.getSocksPort());
 		proxy = new Proxy(Proxy.Type.SOCKS, addr);
 	}
 	

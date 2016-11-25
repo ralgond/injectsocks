@@ -1,12 +1,15 @@
 package ht.misc.injectsocks;
 
+import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
 import java.net.URLClassLoader;
 import java.io.File;
 import java.net.URL;
+import java.util.Iterator;
+import java.util.ServiceLoader;
 
 public class Main {
-	@SuppressWarnings("resource")
+	@SuppressWarnings({ "resource", "rawtypes" })
 	public static void premain(String args, Instrumentation inst) throws Exception {
 		System.out.println("INFO: JarFile="+args);
 		
@@ -14,10 +17,11 @@ public class Main {
 		URL url = jarFile.toURI().toURL();
 		URLClassLoader agentJarLoader = new URLClassLoader(new URL[]{url}, ClassLoader.getSystemClassLoader().getParent());
 		
-		ProxyManager.getInstance().updateProxy(ConfigReader.getSocksHost(), ConfigReader.getSocksPort());
-		
-		Object obj = agentJarLoader.loadClass("ht.misc.injectsocks.InjectSockstTransformerImpl").newInstance();
-		InjectSocksTransformer tranformer = new InjectSocksTransformer(obj);
-		inst.addTransformer(tranformer);
+		ServiceLoader<ClassFileTransformer> t = ServiceLoader.load(ClassFileTransformer.class, agentJarLoader);
+		Iterator it = t.iterator();
+		while (it.hasNext()) {
+			inst.addTransformer((ClassFileTransformer)it.next());
+			break;
+		}
 	}
 }
